@@ -32,7 +32,7 @@ This is the new GTK2 client for LiveJournal (http://www.livejournal.com).
 %if %{use_xmms}
 %package xmms
 Summary:	LogJam helper binary
-Group:		User Interface/Desktops
+Group:		Graphical desktop/GNOME
 Requires:	logjam, xmms
 BuildRequires:	xmms-devel
 
