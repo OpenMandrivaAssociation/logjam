@@ -1,15 +1,11 @@
-%define	name	logjam
-%define	version	4.5.3
-%define	release	%mkrel 1
 %define use_xmms 1
 
-Name:		%{name}
-Version:	%{version}
-Release:	%{release}
-Epoch:		1
+Name:		logjam
+Version:	4.5.3
+Release:	%mkrel 1
 Summary:	GTK2 client for LiveJournal
-License:	GPL
-Group:		User Interface/Desktops
+License:	GPLv2+
+Group:		Networking/Other
 URL:		http://logjam.danga.com/
 Source0:	http://logjam.danga.com/download/logjam-%{version}.tar.bz2
 Requires:	curl >= 7.9, gtkspell
@@ -20,7 +16,6 @@ BuildRequires:	curl-devel, gtk2-devel, gtkspell-devel, libgtkhtml-3.14-devel
 BuildRequires:	gettext, desktop-file-utils, aspell-devel, librsvg2-devel
 BuildRequires:	libsoup-devel, sqlite-devel, gnutls-devel, libgcrypt-devel
 BuildRequires:	autoconf, intltool
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Patch2:		logjam-4.4.1-backdated.patch
 Patch3:		logjam-4.4.1-cleanups.patch
 Patch4:		logjam-4.4.1-fedora-desktop.patch
@@ -29,6 +24,7 @@ Patch6:		logjam-4.5.2-gtkhtml38.patch
 Patch7:		logjam-4.4.1-ru.po.asp.patch
 Patch8:		logjam-4.5.3-gtkspell.patch
 Patch9:		http://people.freebsd.org/~novel/patches/non-freebsd/logjam_docklet_context_menu.diff
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 This is the new GTK2 client for LiveJournal (http://www.livejournal.com).
@@ -58,24 +54,28 @@ current music from XMMS.
 
 %build
 autoconf
-%configure --with-sqlite3 \
-%if %{use_xmms}
+%configure2_5x \
+	--with-sqlite3 \
+    %if %{use_xmms}
 	--with-xmms
-%endif
-make
+    %endif
+
+%make
 
 %install
-rm -rf $RPM_BUILD_ROOT
-mkdir -p $RPM_BUILD_ROOT
-make DESTDIR=$RPM_BUILD_ROOT install
+rm -rf %{buildroot}
+%makeinstall_std
 # Rename locale dir, bugzilla 210206
-# mv $RPM_BUILD_ROOT%{_datadir}/locale/en_US.UTF-8 $RPM_BUILD_ROOT%{_datadir}/locale/en_US
+# mv %{buildroot}%{_datadir}/locale/en_US.UTF-8 %{buildroot}%{_datadir}/locale/en_US
+
 %find_lang %{name}
-desktop-file-install --vendor fedora			\
-  --dir $RPM_BUILD_ROOT%{_datadir}/applications		\
-  --add-category X-Fedora				\
-  --delete-original					\
-  $RPM_BUILD_ROOT/%{_datadir}/applications/logjam.desktop
+
+desktop-file-install			\
+  --dir %{buildroot}%{_datadir}/applications		\
+  %{buildroot}/%{_datadir}/applications/logjam.desktop
+
+%clean
+rm -rf %{buildroot}
 
 %files -f %{name}.lang
 %defattr(-,root,root)
@@ -90,7 +90,3 @@ desktop-file-install --vendor fedora			\
 %defattr(-,root,root)
 %{_bindir}/logjam-xmms-client
 %endif
-
-%clean
-rm -rf $RPM_BUILD_ROOT
-
