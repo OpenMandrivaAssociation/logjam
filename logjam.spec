@@ -12,7 +12,7 @@ Requires:	curl >= 7.9, gtkspell
 %if %{use_xmms}
 BuildRequires:	xmms-devel
 %endif
-BuildRequires:	curl-devel, gtk2-devel, gtkspell-devel, libgtkhtml-3.14-devel
+BuildRequires:	curl-devel, gtk2-devel, gtkspell-devel, gtkhtml-devel
 BuildRequires:	gettext, desktop-file-utils, aspell-devel, librsvg2-devel
 BuildRequires:	libsoup-devel, sqlite-devel, gnutls-devel, libgcrypt-devel
 BuildRequires:	autoconf, intltool
