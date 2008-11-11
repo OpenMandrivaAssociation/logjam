@@ -16,11 +16,10 @@ Requires:	curl >= 7.9, gtkspell
 %if %{use_xmms}
 BuildRequires:	xmms-devel
 %endif
-BuildRequires:	curl-devel, gtk2-devel, gtkspell-devel, libgtkhtml-3.8_15-devel
+BuildRequires:	curl-devel, gtk2-devel, gtkspell-devel, libgtkhtml-3.14-devel
 BuildRequires:	gettext, desktop-file-utils, aspell-devel, librsvg2-devel
 BuildRequires:	libsoup-devel, sqlite-devel, gnutls-devel, libgcrypt-devel
 BuildRequires:	autoconf, intltool
-Obsoletes:	loserjabber, logjam-gnome
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Patch2:		logjam-4.4.1-backdated.patch
 Patch3:		logjam-4.4.1-cleanups.patch
@@ -70,11 +69,11 @@ rm -rf $RPM_BUILD_ROOT
 mkdir -p $RPM_BUILD_ROOT
 make DESTDIR=$RPM_BUILD_ROOT install
 # Rename locale dir, bugzilla 210206
-mv $RPM_BUILD_ROOT%{_datadir}/locale/en_US.UTF-8 $RPM_BUILD_ROOT%{_datadir}/locale/en_US
+# mv $RPM_BUILD_ROOT%{_datadir}/locale/en_US.UTF-8 $RPM_BUILD_ROOT%{_datadir}/locale/en_US
 %find_lang %{name}
-desktop-file-install --vendor fedora                    \
-  --dir $RPM_BUILD_ROOT%{_datadir}/applications         \
-  --add-category X-Fedora                               \
+desktop-file-install --vendor fedora			\
+  --dir $RPM_BUILD_ROOT%{_datadir}/applications		\
+  --add-category X-Fedora				\
   --delete-original					\
   $RPM_BUILD_ROOT/%{_datadir}/applications/logjam.desktop
 
@@ -82,13 +81,13 @@ desktop-file-install --vendor fedora                    \
 %defattr(-,root,root)
 %doc doc/README COPYING doc/TODO
 %{_bindir}/logjam
-/usr/share/man/man1/logjam.1.bz2
-# %{_mandir}/man*/logjam.1.gz
+%{_mandir}/man*/logjam.1.lzma
 %{_datadir}/applications/*.desktop
 %{_datadir}/pixmaps/logjam*
 
 %if %{use_xmms}
 %files xmms
+%defattr(-,root,root)
 %{_bindir}/logjam-xmms-client
 %endif
 
