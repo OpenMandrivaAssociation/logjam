@@ -1,0 +1,45 @@
+--- logjam-4.5.2/configure.in.BAD	2006-01-05 11:45:05.000000000 -0600
++++ logjam-4.5.2/configure.in	2006-01-05 11:46:58.000000000 -0600
+@@ -74,21 +74,29 @@
+                    [compile with GtkSpell support (default autodetect)]),
+     gtkspell-2.0)
+ 
+-  LJ_PKG_ARG_WITH(gtkhtml36, GTKHTML36,
+-    AC_HELP_STRING([--with-gtkhtml36],
+-                   [compile with GtkHtml3.6 support (default autodetect)]),
+-    libgtkhtml-3.6)
+-  if test "$with_gtkhtml36" = "yes"; then
+-    with_gtkhtml="3.6"
++  LJ_PKG_ARG_WITH(gtkhtml38, GTKHTML38,
++    AC_HELP_STRING([--with-gtkhtml38],
++                   [compile with GtkHtml3.8 support (default autodetect)]),   
++    libgtkhtml-3.8)
++  if test "$with_gtkhtml38" = "yes"; then
++    with_gtkhtml="3.8"
+   else
+-    LJ_PKG_ARG_WITH(gtkhtml30, GTKHTML30,
+-      AC_HELP_STRING([--with-gtkhtml30],
+-                     [compile with GtkHtml3.0 support (default autodetect)]),
+-      libgtkhtml-3.0)
+-    if test "$with_gtkhtml30" = "yes"; then
+-      with_gtkhtml="3.0"
++    LJ_PKG_ARG_WITH(gtkhtml36, GTKHTML36,
++      AC_HELP_STRING([--with-gtkhtml36],
++                     [compile with GtkHtml3.6 support (default autodetect)]),
++      libgtkhtml-3.6)
++    if test "$with_gtkhtml36" = "yes"; then
++      with_gtkhtml="3.6"
+     else
+-      with_gtkhtml="no"
++      LJ_PKG_ARG_WITH(gtkhtml30, GTKHTML30,
++        AC_HELP_STRING([--with-gtkhtml30],
++                       [compile with GtkHtml3.0 support (default autodetect)]),
++        libgtkhtml-3.0)
++      if test "$with_gtkhtml30" = "yes"; then
++        with_gtkhtml="3.0"
++      else
++        with_gtkhtml="no"
++      fi
+     fi
+   fi
+   if test "$with_gtkhtml" != "no"; then

@@ -1,0 +1,197 @@
+--- logjam-4.5.1/po/ru_RU.po.orig	2005-01-03 11:13:27.000000000 +0200
++++ logjam-4.5.1/po/ru_RU.po	2005-02-08 14:40:10.147249896 +0200
+@@ -6,19 +7,21 @@
+ # http://www.livejournal.com/~mihun/ , 2002.
+ # Grigory Bakunov <black@asplinux.ru>,
+ # http://www.livejournal.com/~bobuk/, 2003.
+-# Kir Kolyshkin <kir@sacred.ru>, 2003-2004,
+ # http://www.livejournal.com/~k001/
++# Kir Kolyshkin <kir@sacred.ru>, 2003-2004,.
++# Andy Shevchenko <andy@smile.org.ua>, 2005.
+ msgid ""
+ msgstr ""
+-"Project-Id-Version: LogJam 4.4.0\n"
++"Project-Id-Version: ru_RU\n"
+ "Report-Msgid-Bugs-To: \n"
+ "POT-Creation-Date: 2005-08-24 09:12-0700\n"
+-"PO-Revision-Date: 2005-01-07 02:40+0400\n"
+-"Last-Translator: Kir Kolyshkin <kir@sacred.ru>\n"
+-"Language-Team: Russian\n"
++"PO-Revision-Date: 2005-10-25 13:04+0300\n"
++"Last-Translator: Andy Shevchenko <andy@smile.org.ua>\n"
++"Language-Team: Russian <ru@li.org>\n"
+ "MIME-Version: 1.0\n"
+ "Content-Type: text/plain; charset=UTF-8\n"
+ "Content-Transfer-Encoding: 8bit\n"
++"X-Generator: KBabel 1.10.2\n"
+ 
+ #: ../data/logjam.desktop.in.h:1 ../src/docklet.c:67 ../src/init.c:190
+ msgid "LogJam"
+@@ -323,7 +324,7 @@
+ 
+ #: ../src/cmdline_data.h:22
+ msgid "Manage user list."
+-msgstr ""
++msgstr "Управление списком пользователей."
+ 
+ #: ../src/cmdline_data.h:46
+ msgid "Reset checkfriends information."
+@@ -351,7 +352,7 @@
+ 
+ #: ../src/cmdline_data.h:218
+ msgid "Add a user to the user list."
+-msgstr ""
++msgstr "Добавить пользователя в список."
+ 
+ #: ../src/conf.c:88
+ msgid "new host name is invalid"
+@@ -788,7 +789,7 @@
+ #: ../src/getopt.c:741 ../src/getopt.c:914
+ #, c-format
+ msgid "%s: option `%s' requires an argument\n"
+-msgstr "%s: опция `%c%s' требует аргумента\n"
++msgstr "%s: опция `%s' требует аргумента\n"
+ 
+ #. --option
+ #: ../src/getopt.c:770
+@@ -1152,9 +1152,8 @@
+ msgstr "_Музыка:"
+ 
+ #: ../src/jamview.c:414
+-#, fuzzy
+ msgid "_Tags:"
+-msgstr "_До: "
++msgstr "_Теги:"
+ 
+ #: ../src/jamview.c:466
+ msgid "_Preformatted"
+@@ -1213,9 +1212,8 @@
+ msgstr "Ошибка разбора XML-файла дневника: %s"
+ 
+ #: ../src/journalstore_xml.c:751
+-#, fuzzy
+ msgid "No offline copy of this journal."
+-msgstr "Управление локальными копиями вашего дневника."
++msgstr "Нет локальной копии вашего дневника."
+ 
+ #: ../src/link.c:113
+ msgid "Make Link"
+@@ -1554,9 +1552,8 @@
+ msgstr "/Вид/_Изображение"
+ 
+ #: ../src/menu.c:417
+-#, fuzzy
+ msgid "/View/_Tags"
+-msgstr "/Вид/_Музыка"
++msgstr "/Вид/_Теги"
+ 
+ #: ../src/menu.c:418
+ msgid "/View/M_usic"
+@@ -1927,7 +1924,7 @@
+ 
+ #: ../src/preview.c:188
+ msgid "Tags"
+-msgstr ""
++msgstr "Теги"
+ 
+ #: ../src/preview.c:248
+ msgid "HTML Preview"
+@@ -2234,13 +2231,12 @@
+ #. this translation is not crucial
+ #: ../src/thanks.h:11
+ msgid "patches"
+-msgstr ""
++msgstr "заплатки"
+ 
+ #. this translation is not crucial
+ #: ../src/thanks.h:13
+-#, fuzzy
+ msgid "Japanese translation"
+-msgstr "Перевод на испанский"
++msgstr "Перевод на японский"
+ 
+ #. this translation is not crucial
+ #: ../src/thanks.h:15 ../src/thanks.h:29
+@@ -2299,9 +2295,8 @@
+ 
+ #. this translation is not crucial
+ #: ../src/thanks.h:39
+-#, fuzzy
+ msgid "Debian package, undo"
+-msgstr "Помощь с Debian-пакетом"
++msgstr "Debian-пакет, откат"
+ 
+ #. this translation is not crucial
+ #: ../src/thanks.h:41
+@@ -2500,71 +2494,3 @@
+ msgid "Do not show again"
+ msgstr "Не показывать снова"
+ 
+-#~ msgid "automake fixes, testing"
+-#~ msgstr "исправления automake, тестирование"
+-
+-#~ msgid "music|None"
+-#~ msgstr "Не определять"
+-
+-#~ msgid "users|None"
+-#~ msgstr "Никто"
+-
+-#~ msgid "Unable to save to '%s': %s."
+-#~ msgstr "Невозможно сохранить в '%s': %s."
+-
+-#~ msgid "Radio buttons"
+-#~ msgstr "Радио-кнопки"
+-
+-#~ msgid "Check boxes"
+-#~ msgstr "Кнопки выбора"
+-
+-#~ msgid "Drop-down menu"
+-#~ msgstr "Выпадающее меню"
+-
+-#~ msgid "Text entry"
+-#~ msgstr "Поле ввода"
+-
+-#~ msgid "Scale"
+-#~ msgstr "Размер"
+-
+-#~ msgid "<undef>"
+-#~ msgstr "<undef>"
+-
+-#~ msgid "Possible answers:"
+-#~ msgstr "Возможные ответы:"
+-
+-#~ msgid "<< Less"
+-#~ msgstr "<< Меньше"
+-
+-#~ msgid "More >>"
+-#~ msgstr "Больше >>"
+-
+-#~ msgid "Add _question: "
+-#~ msgstr "Добавить вопрос: "
+-
+-#~ msgid "Deletes this question from the poll."
+-#~ msgstr "Удаляет этот вопрос из голосования."
+-
+-#~ msgid "Move up"
+-#~ msgstr "Вверх"
+-
+-#~ msgid "Move this question up one place in the poll."
+-#~ msgstr "Передвигает этот вопрос на одну позицию выше."
+-
+-#~ msgid "Move down"
+-#~ msgstr "Вниз"
+-
+-#~ msgid "Move this question down one place in the poll."
+-#~ msgstr "Передвигает этот вопрос на одну позицию ниже."
+-
+-#~ msgid "Poll _name <i>(optional)</i>: "
+-#~ msgstr "Название <i>(необязательно)</i>:"
+-
+-#~ msgid " Question #%d - %s "
+-#~ msgstr " Вопрос #%d - %s "
+-
+-#~ msgid "<b>[Fill in at least the first possible answer.]</b>"
+-#~ msgstr "<b>[Заполните хотя бы один вариант ответа.]</b>"
+-
+-#~ msgid "<b>[Fill in some question text.]</b>"
+-#~ msgstr "<b>[Заполните текст вопроса.]</b>"
