@@ -1,0 +1,111 @@
+diff -urN logjam-4.6.2-orig/protocol/liblivejournal/livejournal/entry.c logjam-4.6.2-patched/protocol/liblivejournal/livejournal/entry.c
+--- logjam-4.6.2-orig/protocol/liblivejournal/livejournal/entry.c	2011-06-07 09:21:55.000000000 +1100
++++ logjam-4.6.2-patched/protocol/liblivejournal/livejournal/entry.c	2012-11-13 05:06:37.000000000 +1100
+@@ -419,7 +419,7 @@
+ 	}
+ 
+ 	if (errs) {
+-		g_set_error(err, 0, 0, errs->str);
++		g_set_error(err, 0, 0, "%s", errs->str);
+ 		g_string_free(errs, TRUE);
+ 	}
+ 
+@@ -847,7 +847,7 @@
+ 	/* g_spawn* would do no good: it disassociates the tty. viva fork! */
+ 	pid = fork();
+ 	if (pid < 0) {                 /* fork error */
+-		g_set_error(err, G_SPAWN_ERROR, G_SPAWN_ERROR_FORK,
++		g_set_error(err, G_SPAWN_ERROR, G_SPAWN_ERROR_FORK, "%s",
+ 				g_strerror(errno));
+ 		return NULL;
+ 	}
+@@ -862,7 +862,7 @@
+ 
+ 	/* parent */
+ 	if (wait(NULL) != pid) {
+-		g_set_error(err, G_SPAWN_ERROR, G_SPAWN_ERROR_FAILED,
++		g_set_error(err, G_SPAWN_ERROR, G_SPAWN_ERROR_FAILED, "%s",
+ 				g_strerror(errno));
+ 		return NULL;
+ 	}
+diff -urN logjam-4.6.2-orig/src/cmdline.c logjam-4.6.2-patched/src/cmdline.c
+--- logjam-4.6.2-orig/src/cmdline.c	2011-06-06 02:30:32.000000000 +1100
++++ logjam-4.6.2-patched/src/cmdline.c	2012-11-13 05:09:55.000000000 +1100
+@@ -676,7 +676,7 @@
+ 		return;
+ 
+ 	if (g_ascii_strcasecmp(cmdname, "help") == 0) {
+-		g_print(help);
++		g_print("%s", help);
+ 		exit(EXIT_SUCCESS);
+ 	}
+ 	for (i = 0; commands && commands[i].cmdname; i++) {
+diff -urN logjam-4.6.2-orig/src/login.c logjam-4.6.2-patched/src/login.c
+--- logjam-4.6.2-orig/src/login.c	2011-06-06 02:30:32.000000000 +1100
++++ logjam-4.6.2-patched/src/login.c	2012-11-13 05:11:15.000000000 +1100
+@@ -310,7 +310,7 @@
+ 	}
+ 	dlg = gtk_message_dialog_new(parent, GTK_DIALOG_DESTROY_WITH_PARENT,
+ 			GTK_MESSAGE_QUESTION, GTK_BUTTONS_YES_NO,
+-			msg);
++			"%s", msg);
+ 	g_free(msg);
+ 	if (gtk_dialog_run(GTK_DIALOG(dlg)) == GTK_RESPONSE_YES)
+ 		ret = login_run(GTK_WINDOW(dlg), acclj);
+diff -urN logjam-4.6.2-orig/src/music.c logjam-4.6.2-patched/src/music.c
+--- logjam-4.6.2-orig/src/music.c	2010-12-02 21:57:07.000000000 +1000
++++ logjam-4.6.2-patched/src/music.c	2012-11-13 05:11:38.000000000 +1100
+@@ -68,7 +68,7 @@
+ 		return NULL;
+ 
+ 	if (exit_status != 0) {
+-		g_set_error(err, MUSIC_ERROR, MUSIC_COMMAND_ERROR, std_err);
++		g_set_error(err, MUSIC_ERROR, MUSIC_COMMAND_ERROR, "%s", std_err);
+ 		g_free(std_err);
+ 		return NULL;
+ 	}
+diff -urN logjam-4.6.2-orig/src/network-fork.c logjam-4.6.2-patched/src/network-fork.c
+--- logjam-4.6.2-orig/src/network-fork.c	2011-06-06 02:30:32.000000000 +1100
++++ logjam-4.6.2-patched/src/network-fork.c	2012-11-13 05:12:20.000000000 +1100
+@@ -113,7 +113,7 @@
+ 			waitpid(forkdata->pid, NULL, 0);
+ 			forkdata->pid = 0;
+ 			close(pipe);
+-			g_set_error(forkdata->err, NET_ERROR, NET_ERROR_GENERIC, buf);
++			g_set_error(forkdata->err, NET_ERROR, NET_ERROR_GENERIC, "%s", buf);
+ 			g_free(buf);
+ 			gtk_main_quit();
+ 			break;
+diff -urN logjam-4.6.2-orig/src/network-soup.c logjam-4.6.2-patched/src/network-soup.c
+--- logjam-4.6.2-orig/src/network-soup.c	2011-06-06 02:30:32.000000000 +1100
++++ logjam-4.6.2-patched/src/network-soup.c	2012-11-13 05:12:53.000000000 +1100
+@@ -83,7 +83,7 @@
+ 	status = soup_session_send_message(session, req);
+ 	if (status != SOUP_STATUS_OK) {
+ 		g_set_error(err, NET_ERROR, NET_ERROR_GENERIC,
+-			    req->reason_phrase);
++			    "%s", req->reason_phrase);
+ 		goto out;
+ 	}
+ 
+diff -urN logjam-4.6.2-orig/src/util-gtk.c logjam-4.6.2-patched/src/util-gtk.c
+--- logjam-4.6.2-orig/src/util-gtk.c	2011-06-06 02:30:32.000000000 +1100
++++ logjam-4.6.2-patched/src/util-gtk.c	2012-11-13 05:10:40.000000000 +1100
+@@ -151,7 +151,7 @@
+ 	dlg = gtk_message_dialog_new(GTK_WINDOW(parent), 0,
+ 			GTK_MESSAGE_QUESTION,
+ 			GTK_BUTTONS_YES_NO,
+-			msg);
++			"%s", msg);
+ 	jam_window_init(GTK_WINDOW(dlg), parent, title, -1, -1);
+ 	res = (gtk_dialog_run(GTK_DIALOG(dlg)) == GTK_RESPONSE_YES);
+ 	gtk_widget_destroy(dlg);
+@@ -309,7 +309,7 @@
+ 	/* TODO: switch to jam_dialogs, which are prettier */
+ 	dlg = gtk_message_dialog_new(parent, 0, msgtype,
+ 			buttontype,
+-			fullmsg);
++			"%s", fullmsg);
+ 	gtk_window_set_title(GTK_WINDOW(dlg), title);
+ 	gtk_window_set_transient_for(GTK_WINDOW(dlg), GTK_WINDOW(parent));
+ 
