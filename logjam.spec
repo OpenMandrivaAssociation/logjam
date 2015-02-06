@@ -2,7 +2,7 @@
 
 Name:		logjam
 Version:	4.6.2
-Release:	1
+Release:	2
 Summary:	GTK2 client for LiveJournal
 License:	GPLv2+
 Group:		Networking/Other
