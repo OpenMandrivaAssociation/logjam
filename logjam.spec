@@ -6,7 +6,7 @@ Release:	2
 Summary:	GTK2 client for LiveJournal
 License:	GPLv2+
 Group:		Networking/Other
-URL:		http://logjam.danga.com/
+URL:		https://logjam.danga.com/
 Source0:	http://logjam.danga.com/download/logjam-%{version}.tar.bz2
 Patch0:		logjam-4.4.1-fedora-desktop.patch
 Patch1:		logjam-4.6.2-sfmt.patch
