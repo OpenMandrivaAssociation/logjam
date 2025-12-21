@@ -11,6 +11,10 @@ Source0:	http://logjam.danga.com/download/logjam-%{version}.tar.bz2
 Patch0:		logjam-4.4.1-fedora-desktop.patch
 Patch1:		logjam-4.6.2-sfmt.patch
 %if %{use_xmms}
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	xmms-devel
 %endif
 BuildRequires:	autoconf
